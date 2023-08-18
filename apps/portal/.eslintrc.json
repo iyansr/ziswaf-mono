@@ -2,5 +2,21 @@
   "root": true,
   "extends": [
     "custom"
-  ]
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": [
+          "tsconfig.json",
+          "node_modules"
+        ]
+      },
+      "node": {
+        "project": [
+          "tsconfig.json",
+          "node_modules"
+        ]
+      }
+    }
+  }
 }

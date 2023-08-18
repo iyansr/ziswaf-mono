@@ -1,5 +1,8 @@
+import { cn } from 'ui/lib/utils';
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Image from 'next/image';
 
 import 'ui/css/global.css';
 
@@ -13,7 +16,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(inter.className, 'bg-slate-200 text-slate-900')}>
+        <div className="max-w-md mx-auto min-h-screen bg-white relative">
+          <nav className="p-4 flex items-center justify-center w-full bg-yellow-400">
+            <Image src="/zis.png" alt="Logo" width={32} height={32} />
+          </nav>
+          {children}
+          <div className="h-16 bg-red-200 w-full fixed bottom-0 left-0 right-0 max-w-md mx-auto"></div>
+        </div>
+      </body>
     </html>
   );
 }
