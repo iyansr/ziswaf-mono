@@ -1,8 +1,14 @@
 import React from 'react';
 
-import Image from 'next/image';
-
 import SearchBar from '@/modules/home/components/SearchBar';
+import Menu from '@/modules/home/components/Menu';
+import Carousel from '@/modules/home/components/Carousel';
+import Image from 'next/image';
+import Link from 'next/link';
+import DonationItemCard from '@/modules/shared/components/DonationItemCard';
+import DonationSection from '@/modules/home/components/DonationSection';
+import DonationItemCardVertical from '@/modules/shared/components/DonationItemCardVertical';
+import { Button } from 'ui/components/ui/button';
 
 const HomePage = () => {
   return (
@@ -10,33 +16,26 @@ const HomePage = () => {
       <div className="p-4 -mt-4 bg-yellow-400 sticky top-0 z-10">
         <SearchBar />
       </div>
-      <div className="relative aspect-video rounded-md overflow-hidden mt-6 mx-4">
-        <Image
-          src="https://ik.imagekit.io/iyansr/zis-carousel1_51xPIr38Y.jpeg?updatedAt=1692372579001"
-          alt="Carousel1"
-          fill
-          className="object-cover"
-        />
-      </div>
+      <Carousel />
+      <DonationSection title="Program Pilihan" />
+      <Menu />
 
-      <div className="bg-slate-100 mt-6 p-4">
-        <h2 className="font-semibold text-center">Mau berbuat kebaikan apa hari ini?</h2>
+      <div className="mt-5 px-4">
+        <h3 className="font-semibold ">Program</h3>
 
-        <div className="flex items-center space-x-6 mt-4">
-          <div className="aspect-square bg-yellow-300 flex-1 rounded-lg flex items-center justify-center font-semibold">
-            zakat
-          </div>
-          <div className="aspect-square bg-yellow-300 flex-1 rounded-lg flex items-center justify-center font-semibold">
-            infak
-          </div>
-          <div className="aspect-square bg-yellow-300 flex-1 rounded-lg flex items-center justify-center font-semibold">
-            sedekah
-          </div>
-          <div className="aspect-square bg-yellow-300 flex-1 rounded-lg flex items-center justify-center font-semibold">
-            wakaf
-          </div>
+        <DonationItemCardVertical />
+        <DonationItemCardVertical />
+        <DonationItemCardVertical />
+        <DonationItemCardVertical />
+
+        <div className="flex justify-center mt-4">
+          <Button className="text-slate-50" variant="destructive">
+            Lihat Semua Program
+          </Button>
         </div>
       </div>
+
+      <div className="h-60"></div>
     </main>
   );
 };

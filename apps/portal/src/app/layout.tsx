@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <nav className="p-4 flex items-center justify-center w-full bg-yellow-400">
             <Image src="/zis.png" alt="Logo" width={32} height={32} />
           </nav>
-          {children}
+          <div className="pb-16">{children}</div>
           <div className="h-16 bg-red-200 w-full fixed bottom-0 left-0 right-0 max-w-md mx-auto"></div>
         </div>
       </body>
