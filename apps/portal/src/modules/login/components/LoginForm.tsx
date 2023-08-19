@@ -1,8 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from 'ui/src/components/button';
 import {
   Form,
@@ -13,26 +11,13 @@ import {
   FormMessage,
 } from 'ui/src/components/form';
 import { Input } from 'ui/src/components/input';
-import { z } from 'zod';
 
 import Link from 'next/link';
 
-const schema = z.object({
-  email: z.string({ required_error: 'Email harus diisi' }).email({ message: 'Email tidak valid' }),
-  password: z.string({ required_error: 'Password harus diisi' }).min(8),
-});
-
-type LoginSchema = z.infer<typeof schema>;
+import useLoginForm from '@/modules/login/hooks/useLoginForm';
 
 const LoginForm = () => {
-  const form = useForm<LoginSchema>({
-    resolver: zodResolver(schema),
-  });
-
-  const onSubmit = (data: LoginSchema) => {
-    console.log(data);
-  };
-
+  const { form, onSubmit } = useLoginForm();
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-8">
