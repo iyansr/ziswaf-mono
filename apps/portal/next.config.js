@@ -3,4 +3,5 @@ module.exports = {
   images: {
     domains: ['ik.imagekit.io'],
   },
+  transpilePackages: ['ui'],
 };
