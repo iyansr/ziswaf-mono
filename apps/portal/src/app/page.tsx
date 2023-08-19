@@ -11,7 +11,7 @@ import DonationItemCardVertical from '@/modules/shared/components/DonationItemCa
 const HomePage = () => {
   return (
     <main className="relative">
-      <div className="p-4 -mt-4 bg-yellow-400 sticky top-0 z-10">
+      <div className="p-4 -mt-4 bg-amber-300 sticky top-0 z-10">
         <SearchBar />
       </div>
       <Carousel />
