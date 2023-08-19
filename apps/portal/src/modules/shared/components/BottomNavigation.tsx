@@ -31,9 +31,11 @@ const menu = [
   },
 ];
 
+const routes = [...menu.map((item) => item.href), '/register'];
+
 const BottomNavigation = () => {
   const pathName = usePathname();
-  const matchRoutes = menu.find((item) => item.href === pathName);
+  const matchRoutes = routes.find((item) => item === pathName);
   if (!matchRoutes) return null;
 
   return (
