@@ -1,12 +1,22 @@
 import React from 'react';
 import { Button } from 'ui/src/components/button';
 
-import Carousel from '@/modules/home/components/Carousel';
+import dynamic from 'next/dynamic';
+
 import DonationSection from '@/modules/home/components/DonationSection';
 import Menu from '@/modules/home/components/Menu';
 import SearchBar from '@/modules/home/components/SearchBar';
 import UserDonationItem from '@/modules/home/components/UserDonationItem';
 import DonationItemCardVertical from '@/modules/shared/components/DonationItemCardVertical';
+
+const Carousel = dynamic(() => import('@/modules/home/components/Carousel'), {
+  ssr: false,
+  loading: () => (
+    <div className="px-4 mt-6">
+      <div className="w-full aspect-video bg-slate-200 rounded-md " />
+    </div>
+  ),
+});
 
 const HomePage = () => {
   return (
