@@ -1,6 +1,13 @@
 module.exports = {
-  extends: ['next', 'turbo', 'prettier', 'plugin:import/recommended'],
-  plugins: ['react', 'simple-import-sort', 'prettier', 'import'],
+  extends: [
+    'next',
+    'eslint:recommended',
+    'turbo',
+    'prettier',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
+  plugins: ['simple-import-sort', 'prettier', 'import'],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
     'prettier/prettier': 'error',

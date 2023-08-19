@@ -5,6 +5,9 @@
       "source.fixAll": true,
       "source.fixAll.eslint": true
    },
+   "typescript.preferences.importModuleSpecifier": "non-relative",
+   "javascript.preferences.importModuleSpecifier": "non-relative",
+   "typescript.tsdk": "./node_modules/typescript/lib",
    "prettier.configPath": ".prettierrc.json",
    "eslint.validate": [
       "javascript",

@@ -1,10 +1,10 @@
-import { cn } from 'ui/lib/utils';
+import { cn } from 'ui/src/lib/utils';
 
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
 
-import 'ui/css/global.css';
+import 'ui/src/css/global.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

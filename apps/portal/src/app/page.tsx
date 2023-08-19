@@ -1,14 +1,12 @@
 import React from 'react';
+import { Button } from 'ui/src/components/button';
 
-import SearchBar from '@/modules/home/components/SearchBar';
-import Menu from '@/modules/home/components/Menu';
 import Carousel from '@/modules/home/components/Carousel';
-import Image from 'next/image';
-import Link from 'next/link';
-import DonationItemCard from '@/modules/shared/components/DonationItemCard';
 import DonationSection from '@/modules/home/components/DonationSection';
+import Menu from '@/modules/home/components/Menu';
+import SearchBar from '@/modules/home/components/SearchBar';
+import UserDonationItem from '@/modules/home/components/UserDonationItem';
 import DonationItemCardVertical from '@/modules/shared/components/DonationItemCardVertical';
-import { Button } from 'ui/components/ui/button';
 
 const HomePage = () => {
   return (
@@ -29,8 +27,23 @@ const HomePage = () => {
         <DonationItemCardVertical />
 
         <div className="flex justify-center mt-4">
-          <Button className="text-slate-50" variant="destructive">
+          <Button className="text-slate-50" size="sm" variant="destructive">
             Lihat Semua Program
+          </Button>
+        </div>
+      </div>
+
+      <div className="mt-10 px-4">
+        <h3 className="font-semibold ">#OrangBaik</h3>
+
+        <UserDonationItem />
+        <UserDonationItem />
+        <UserDonationItem />
+        <UserDonationItem />
+
+        <div className="flex justify-center mt-4">
+          <Button className="text-slate-50" size="sm" variant="destructive">
+            Lihat Semua
           </Button>
         </div>
       </div>

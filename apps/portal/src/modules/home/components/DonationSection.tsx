@@ -1,6 +1,8 @@
-import DonationItemCard from '@/modules/shared/components/DonationItemCard';
-import Link from 'next/link';
 import React from 'react';
+
+import Link from 'next/link';
+
+import DonationItemCard from '@/modules/shared/components/DonationItemCard';
 
 type Props = {
   title: string;

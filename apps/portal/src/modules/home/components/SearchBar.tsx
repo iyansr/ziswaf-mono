@@ -1,6 +1,6 @@
 import React from 'react';
 import { SearchIcon } from 'lucide-react';
-import { Button } from 'ui/components/ui/button';
+import { Button } from 'ui/src/components/button';
 
 const SearchBar = () => {
   return (
