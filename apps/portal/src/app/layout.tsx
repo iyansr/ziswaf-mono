@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Image src="/zis.png" alt="Logo" width={32} height={32} />
           </nav>
           <div className="pb-16">{children}</div>
-          <div className="h-16 bg-red-200 w-full fixed bottom-0 left-0 right-0 max-w-md mx-auto"></div>
+          <div className="h-16 bg-white w-full fixed bottom-0 left-0 right-0 max-w-md mx-auto shadow-t-sm border-t border-t-slate-100"></div>
         </div>
       </body>
     </html>
