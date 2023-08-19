@@ -8,13 +8,5 @@
     "dist",
     "build",
     "node_modules"
-  ],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@ui/*": [
-        "./src/*"
-      ],
-    }
-  }
+  ]
 }
