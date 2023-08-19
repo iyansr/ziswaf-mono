@@ -15,9 +15,9 @@ const UserDonationItem = () => {
       </div>
 
       <div>
-        <p className="font-semibold text-orange-500">Hamba Allah</p>
-        <p className="text-xs my-2">3 hari yang lalu</p>
-        <p className="font-semibold">Rp 100.000</p>
+        <p className="font-semibold text-sm text-orange-500">Hamba Allah</p>
+        <p className="text-[10px] my-2 text-slate-500">3 hari yang lalu</p>
+        <p className="font-semibold text-sm">Rp 100.000</p>
       </div>
     </div>
   );

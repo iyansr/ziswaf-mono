@@ -48,7 +48,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="h-60"></div>
+      <div className="h-32"></div>
     </main>
   );
 };
