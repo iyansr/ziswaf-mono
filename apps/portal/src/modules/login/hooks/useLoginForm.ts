@@ -1,24 +1,40 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useToast } from 'ui/src/components/use-toast';
 
-const schema = z.object({
-  email: z.string({ required_error: 'Email harus diisi' }).email({ message: 'Email tidak valid' }),
-  password: z.string({ required_error: 'Password harus diisi' }).min(8),
-});
+import { signIn } from 'next-auth/react';
 
-type LoginSchema = z.infer<typeof schema>;
+import { LoginSchema, loginSchema } from '@/modules/login/schema';
 
 const useLoginForm = () => {
+  const [submitting, setSubmitting] = useState(false);
   const form = useForm<LoginSchema>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(loginSchema),
   });
+  const { toast } = useToast();
 
-  const onSubmit = (data: LoginSchema) => {
-    console.log(data);
+  const onSubmit = async (data: LoginSchema) => {
+    if (!submitting) {
+      setSubmitting(true);
+    }
+    const result = await signIn('credentials', {
+      ...data,
+      callbackUrl: `${process.env.NEXT_PUBLIC_URL}`,
+      redirect: false,
+    });
+    if (result?.error) {
+      toast({
+        title: 'Login Gagal',
+        description: result.error,
+        variant: 'destructive',
+        duration: 5000,
+      });
+    }
+    setSubmitting(false);
   };
 
-  return { form, onSubmit };
+  return { form, onSubmit, submitting };
 };
 
 export default useLoginForm;

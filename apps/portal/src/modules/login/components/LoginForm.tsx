@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { LoaderIcon } from 'lucide-react';
 import { Button } from 'ui/src/components/button';
 import {
   Form,
@@ -17,7 +18,7 @@ import Link from 'next/link';
 import useLoginForm from '@/modules/login/hooks/useLoginForm';
 
 const LoginForm = () => {
-  const { form, onSubmit } = useLoginForm();
+  const { form, onSubmit, submitting } = useLoginForm();
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-8">
@@ -52,7 +53,8 @@ const LoginForm = () => {
           <Link href="#">Lupa Password?</Link>
         </p>
 
-        <Button type="submit" className="w-full" variant="destructive">
+        <Button type="submit" className="w-full" variant="destructive" disabled={submitting}>
+          {submitting && <LoaderIcon className="mr-2 h-4 w-4 animate-spin" />}
           Login
         </Button>
 

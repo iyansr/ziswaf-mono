@@ -1,3 +1,4 @@
+import { Toaster } from 'ui/src/components/toaster';
 import { cn } from 'ui/src/lib/utils';
 
 import type { Metadata } from 'next';
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="pb-16">{children}</div>
           <BottomNavigation />
         </div>
+        <Toaster />
       </body>
     </html>
   );
