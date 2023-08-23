@@ -34,11 +34,17 @@ export const loginUserHandler = async (req: Request) => {
     const hashedPassword = await hashPassword(password);
 
     if (!user) {
-      return NextResponse.json({ error: 'Email atau password salah' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Email atau password salah / User tidak ditemukan' },
+        { status: 400 },
+      );
     }
 
     if (user.password !== hashedPassword) {
-      return NextResponse.json({ error: 'Email atau password salah' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Email atau password salah / User tidak ditemukan' },
+        { status: 400 },
+      );
     }
 
     return NextResponse.json({ user: omit(user, ['password']) });
@@ -47,6 +53,6 @@ export const loginUserHandler = async (req: Request) => {
     if (error instanceof ZodError) {
       return NextResponse.json({ error: error.issues }, { status: 400 });
     }
-    throw error;
+    return NextResponse.json({ error: error?.message }, { status: 500 });
   }
 };

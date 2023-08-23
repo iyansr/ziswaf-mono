@@ -28,7 +28,7 @@ const useLoginForm = () => {
         title: 'Login Gagal',
         description: result.error,
         variant: 'destructive',
-        duration: 5000,
+        duration: 2000,
       });
     }
     setSubmitting(false);
