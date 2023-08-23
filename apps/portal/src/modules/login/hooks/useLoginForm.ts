@@ -20,7 +20,7 @@ const useLoginForm = () => {
     }
     const result = await signIn('credentials', {
       ...data,
-      callbackUrl: `${process.env.NEXT_PUBLIC_URL}`,
+      callbackUrl: `${process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_VERCEL_URL}`,
       redirect: false,
     });
     if (result?.error) {
