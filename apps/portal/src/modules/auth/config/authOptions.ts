@@ -23,7 +23,8 @@ export const authOptions: NextAuthOptions = {
         password: {},
       },
       async authorize(credentials) {
-        const result = await fetch(`${process.env.NEXTAUTH_URL}/api/user/login`, {
+        const url = process.env.NEXT_PUBLIC_URL || `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+        const result = await fetch(`${url}/api/user/login`, {
           body: JSON.stringify(credentials),
           method: 'POST',
         });
