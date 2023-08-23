@@ -37,7 +37,14 @@ export const registerUserHandler = async (req: Request) => {
       },
     });
 
-    return NextResponse.json({ user: omit(newUser, ['password']) });
+    return new Response(JSON.stringify({ user: omit(newUser, ['password']) }), {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+      status: 200,
+    });
   } catch (error) {
     console.log(error);
     if (error instanceof ZodError) {
