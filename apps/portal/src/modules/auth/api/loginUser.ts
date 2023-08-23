@@ -1,6 +1,7 @@
 import omit from 'lodash/omit';
 import { ZodError } from 'zod';
 
+import { ApiError } from 'next/dist/server/api-utils';
 import { NextResponse } from 'next/server';
 
 import { LoginSchema, loginSchema } from '@/modules/login/schema';
@@ -53,6 +54,6 @@ export const loginUserHandler = async (req: Request) => {
     if (error instanceof ZodError) {
       return NextResponse.json({ error: error.issues }, { status: 400 });
     }
-    return NextResponse.json({ error: error?.message }, { status: 500 });
+    return NextResponse.json({ error: (error as ApiError)?.message }, { status: 500 });
   }
 };
