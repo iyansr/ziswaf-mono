@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
 import { LoginSchema, loginSchema } from '@/modules/login/schema';
 import prismaClient from '@/modules/shared/libs/database/prismaClient';
 import { extractBody } from '@/modules/shared/utils/extractBody';
-import { hashPassword } from '@/modules/shared/utils/password';
+import { comparePassword } from '@/modules/shared/utils/password';
 
 export const loginUserHandler = async (req: Request) => {
   try {
@@ -22,7 +22,6 @@ export const loginUserHandler = async (req: Request) => {
         image: true,
         email: true,
         address: true,
-        district: true,
         password: true,
         phone: true,
         subDistrict: true,
@@ -32,16 +31,15 @@ export const loginUserHandler = async (req: Request) => {
       },
     });
 
-    const hashedPassword = await hashPassword(password);
-
     if (!user) {
       return NextResponse.json(
         { error: 'Email atau password salah / User tidak ditemukan' },
         { status: 400 },
       );
     }
+    const isPasswordValid = await comparePassword(password, user.password);
 
-    if (user.password !== hashedPassword) {
+    if (!isPasswordValid) {
       return NextResponse.json(
         { error: 'Email atau password salah / User tidak ditemukan' },
         { status: 400 },

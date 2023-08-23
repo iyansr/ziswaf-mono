@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'ui/src/components/button';
 
 import dynamic from 'next/dynamic';
+import { getSession } from 'next-auth/react';
 
 import DonationSection from '@/modules/home/components/DonationSection';
 import Menu from '@/modules/home/components/Menu';
@@ -18,7 +19,10 @@ const Carousel = dynamic(() => import('@/modules/home/components/Carousel'), {
   ),
 });
 
-const HomePage = () => {
+const HomePage = async () => {
+  const session = await getSession();
+
+  console.log({ LOCALSESSION: session });
   return (
     <main className="relative">
       <div className="p-4 -mt-4 bg-amber-300 sticky top-0 z-10">

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { LoaderIcon } from 'lucide-react';
 import { Button } from 'ui/src/components/button';
 import {
   Form,
@@ -18,7 +19,7 @@ import Link from 'next/link';
 import useRegisterForm from '@/modules/register/hooks/useRegisterForm';
 
 const RegisterForm = () => {
-  const { form, onSubmit } = useRegisterForm();
+  const { form, onSubmit, isLoading } = useRegisterForm();
 
   return (
     <Form {...form}>
@@ -144,8 +145,9 @@ const RegisterForm = () => {
           )}
         />
 
-        <Button type="submit" className="w-full" variant="destructive">
-          Daftar
+        <Button type="submit" className="w-full" variant="destructive" disabled={isLoading}>
+          {isLoading && <LoaderIcon className="mr-2 h-4 w-4 animate-spin" />}
+          Masuk
         </Button>
 
         <p className="text-sm text-slate-600 text-center">

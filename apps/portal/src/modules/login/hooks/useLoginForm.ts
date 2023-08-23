@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from 'ui/src/components/use-toast';
 
+import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 
 import { LoginSchema, loginSchema } from '@/modules/login/schema';
+import { K_BASE_URL } from '@/modules/shared/constants';
 
 const useLoginForm = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -13,16 +15,15 @@ const useLoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
   const { toast } = useToast();
+  const router = useRouter();
 
   const onSubmit = async (data: LoginSchema) => {
-    const callbackUrl =
-      process.env.NEXT_PUBLIC_URL || `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
     if (!submitting) {
       setSubmitting(true);
     }
     const result = await signIn('credentials', {
       ...data,
-      callbackUrl,
+      callbackUrl: K_BASE_URL,
       redirect: false,
     });
     if (result?.error) {
@@ -32,6 +33,16 @@ const useLoginForm = () => {
         variant: 'destructive',
         duration: 2000,
       });
+      return;
+    }
+    if (result?.ok) {
+      toast({
+        title: 'Login Berhasil',
+        variant: 'default',
+        duration: 2000,
+      });
+      router.push('/');
+      return;
     }
     setSubmitting(false);
   };

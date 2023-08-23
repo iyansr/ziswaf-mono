@@ -1,39 +1,46 @@
 'use client';
 
 import React from 'react';
-import { HeartHandshakeIcon, HomeIcon, LayoutGridIcon, LogInIcon } from 'lucide-react';
+import { HeartHandshakeIcon, HomeIcon, LayoutGridIcon, LogInIcon, UserIcon } from 'lucide-react';
 import { Button } from 'ui/src/components/button';
 import { cn } from 'ui/src/lib/utils';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-const menu = [
-  {
-    icon: HomeIcon,
-    label: 'Home',
-    href: '/',
-  },
-  {
-    icon: LayoutGridIcon,
-    label: 'Program',
-    href: '/program',
-  },
-  {
-    icon: HeartHandshakeIcon,
-    label: 'Galang Dana',
-    href: '/galang-dana',
-  },
-  {
-    icon: LogInIcon,
-    label: 'Masuk',
-    href: '/login',
-  },
-];
-
-const routes = [...menu.map((item) => item.href), '/register'];
+import { useSession } from 'next-auth/react';
 
 const BottomNavigation = () => {
+  const { status } = useSession();
+
+  const menu = [
+    {
+      icon: HomeIcon,
+      label: 'Home',
+      href: '/',
+    },
+    {
+      icon: LayoutGridIcon,
+      label: 'Program',
+      href: '/program',
+    },
+    {
+      icon: HeartHandshakeIcon,
+      label: 'Galang Dana',
+      href: '/galang-dana',
+    },
+    status === 'unauthenticated' || status === 'loading'
+      ? {
+          icon: LogInIcon,
+          label: 'Masuk',
+          href: '/login',
+        }
+      : {
+          icon: UserIcon,
+          label: 'Akun',
+          href: '/account',
+        },
+  ];
+  const routes = [...menu.map((item) => item.href), '/register'];
   const pathName = usePathname();
   const matchRoutes = routes.find((item) => item === pathName);
   if (!matchRoutes) return null;

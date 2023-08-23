@@ -55,7 +55,7 @@ const LoginForm = () => {
 
         <Button type="submit" className="w-full" variant="destructive" disabled={submitting}>
           {submitting && <LoaderIcon className="mr-2 h-4 w-4 animate-spin" />}
-          Login
+          Masuk
         </Button>
 
         <p className="text-sm text-slate-600 text-center">

@@ -48,11 +48,10 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
-  phone         String    @unique
+  phone         String
   address       String    @db.Text
   subDistrict   String    @map("sub_district")
   urbanVillage  String    @map("urban_village")
-  district      String
   postCode      String    @map("post_code")
   password      String
   image         String?

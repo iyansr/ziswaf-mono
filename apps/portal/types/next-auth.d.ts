@@ -9,5 +9,4 @@ declare module 'next-auth' {
   interface Session {
     user: Omit<DatabaseUser, 'password'> & DefaultSession['user'];
   }
-  interface User extends Omit<DatabaseUser, 'password'> {}
 }

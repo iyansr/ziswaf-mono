@@ -1,35 +1,42 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useToast } from 'ui/src/components/use-toast';
 
-const schema: z.AnyZodObject = z.object({
-  email: z.string({ required_error: 'Email harus diisi' }).email({ message: 'Email tidak valid' }),
-  phone: z.string({ required_error: 'Nomor telepon harus diisi' }).min(10),
-  name: z.string({ required_error: 'Nama harus diisi' }),
-  address: z.string({ required_error: 'Alamat harus diisi' }),
-  subDistrict: z.string({ required_error: 'Kecamatan harus diisi' }),
-  urbanVillage: z.string({ required_error: 'Kelurahan harus diisi' }),
-  postCode: z.string({ required_error: 'Kode pos harus diisi' }),
-  password: z.string({ required_error: 'Password harus diisi' }).min(8),
-  confirmPassword: z
-    .string({ required_error: 'Konfirmasi password harus diisi' })
-    .min(8)
-    .refine((data) => data === schema.shape.password, {
-      message: 'Password tidak sama',
-    }),
-});
+import { useRouter } from 'next/navigation';
 
-type RegisterSchema = z.infer<typeof schema>;
+import useMutateRegister from '@/modules/register/hooks/useMutateRegister';
+import { RegisterSchema, registerSchema } from '@/modules/register/schema';
 
 const useRegisterForm = () => {
   const form = useForm<RegisterSchema>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(registerSchema),
   });
+  const { mutateAsync, isLoading } = useMutateRegister();
+  const router = useRouter();
+  const { toast } = useToast();
 
-  const onSubmit = (data: RegisterSchema) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterSchema) => {
+    try {
+      await mutateAsync(data);
+      toast({
+        title: 'Pendaftaran berhasil',
+        description: 'Silahkan masuk untuk melanjutkan',
+        variant: 'default',
+        duration: 2000,
+      });
+
+      router.push('/login');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast({
+        title: 'Galal mendaftar',
+        description: error?.response?.data?.error ?? 'Terjadi kesalahan',
+        variant: 'destructive',
+        duration: 2000,
+      });
+    }
   };
-  return { form, onSubmit };
+  return { form, onSubmit, isLoading };
 };
 
 export default useRegisterForm;
