@@ -15,12 +15,14 @@ const useLoginForm = () => {
   const { toast } = useToast();
 
   const onSubmit = async (data: LoginSchema) => {
+    const callbackUrl =
+      process.env.NEXT_PUBLIC_URL || `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
     if (!submitting) {
       setSubmitting(true);
     }
     const result = await signIn('credentials', {
       ...data,
-      callbackUrl: `${process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_VERCEL_URL}`,
+      callbackUrl,
       redirect: false,
     });
     if (result?.error) {
