@@ -33,6 +33,7 @@ const useLoginForm = () => {
         variant: 'destructive',
         duration: 2000,
       });
+      setSubmitting(false);
       return;
     }
     if (result?.ok) {
@@ -41,6 +42,7 @@ const useLoginForm = () => {
         variant: 'default',
         duration: 2000,
       });
+      setSubmitting(false);
       router.push('/');
       return;
     }

@@ -147,7 +147,7 @@ const RegisterForm = () => {
 
         <Button type="submit" className="w-full" variant="destructive" disabled={isLoading}>
           {isLoading && <LoaderIcon className="mr-2 h-4 w-4 animate-spin" />}
-          Masuk
+          Daftar
         </Button>
 
         <p className="text-sm text-slate-600 text-center">

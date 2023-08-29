@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   themeColor: '#fcd34d',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={cn(inter.className, 'bg-slate-200 text-slate-900')}>
